@@ -16,14 +16,10 @@ def load_model():
 
 loaded_model, vectorizer = load_model()
 
-@application.route('/')
-def home():
-    return "Fake News Detection API is running!"
-
 @application.route('/predict', methods=['POST'])
 def predict():
-    data = request.get_json()
-    news_text = data.get('text', '')
+    data = request.json
+    news_text = data.get('text')
 
     if not news_text:
         return jsonify({'error': 'No text provided'}), 400
