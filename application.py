@@ -3,7 +3,7 @@ import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 def load_model():
     with open('basic_classifier.pkl', 'rb') as fid:
@@ -16,11 +16,11 @@ def load_model():
 
 loaded_model, vectorizer = load_model()
 
-@app.route('/')
+@application.route('/')
 def home():
     return "Fake News Detection API is running!"
 
-@app.route('/predict', methods=['POST'])
+@application.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
     news_text = data.get('text', '')
@@ -35,4 +35,4 @@ def predict():
     return jsonify({'prediction': result})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    application.run(debug=True, host='0.0.0.0')
