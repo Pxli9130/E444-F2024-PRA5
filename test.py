@@ -2,6 +2,7 @@
 import requests
 
 api_url = 'http://pra53-env.eba-jiexkzpm.us-east-1.elasticbeanstalk.com/predict'
+# api_url = 'http://localhost:5000/predict'
 
 test_cases = [
     {"text": "This is fake news about an event that never happened."},
@@ -12,7 +13,7 @@ test_cases = [
 
 for i, test_case in enumerate(test_cases):
     response = requests.post(api_url, json=test_case)
-    print(f"Test Case {i+1} - Status Code: {response.status_code}")
+    # print(f"Test Case {i+1} - Status Code: {response.status_code}")
     print(f"Test Case {i+1} - Raw Response: {response.text}")
 
     try:
